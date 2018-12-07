@@ -9,11 +9,11 @@ public class CountServlet extends HttpServlet {
     private int count = 1;
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String numPassed = req.getParameter("num");
-        if (numPassed == null) {
+        String reset = req.getParameter("reset");
+        if (!reset.equalsIgnoreCase("yes")) {
             res.getWriter().print("<h1>This page done went been seent: " + count + " times.</h1>");
         } else {
-            count = Integer.parseInt(numPassed);
+            count = 1;
             res.getWriter().print("<h1>This page done went been seent: " + count + " times.</h1>");
         }
         count++;
