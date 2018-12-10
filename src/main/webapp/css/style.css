@@ -1,0 +1,17 @@
+.blueish {
+    background-color: #2D93AD;
+}
+
+.main {
+    background-color: #EFF7FF;
+}
+
+.push-button {
+    position: relative;
+    left: 52px;
+}
+
+.logo {
+    max-height: 35px;
+    width: auto;
+}
