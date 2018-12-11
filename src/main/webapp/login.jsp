@@ -40,6 +40,10 @@
             </form>
         </div>
 
+        <c:if test='${not param.user.equals("admin") && not empty param.user}'>
+            <img src="img/thinking_man.png" alt="a man that is thinking" class="think-man animated slideInUp delay-1s">
+        </c:if>
+
         <jsp:include page="partials/footer-boot.jsp" />
         <jsp:include page="partials/boostrap-script.jsp" />
     </body>

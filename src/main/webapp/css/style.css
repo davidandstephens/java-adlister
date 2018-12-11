@@ -44,6 +44,13 @@
     left: 225px;
 }
 
+.think-man {
+    z-index: 1;
+    max-width: 320px;
+    position: fixed;
+    bottom: -15px;
+}
+
 .z2 {
     z-index: 2;
 }
