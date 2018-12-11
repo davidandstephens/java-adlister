@@ -15,7 +15,9 @@
 </c:if>
 
 <html>
-    <jsp:include page="partials/bootstrap-head.jsp"/>
+<jsp:include page="partials/bootstrap-head.jsp">
+    <jsp:param name="title" value="Log In, Please" />
+</jsp:include>
     <body class="blueish">
         <jsp:include page="partials/navbar-boot.jsp"/>
 
@@ -26,13 +28,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Username</span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Text input for username">
+                    <input type="text" name="user" class="form-control" aria-label="Text input for username">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Password</span>
                     </div>
-                    <input type="password" class="form-control" aria-label="Text input for password">
+                    <input type="password" name="pass" class="form-control" aria-label="Text input for password">
                 </div>
                 <button class="btn btn-success mb-3" type="submit">Let's-a Go!</button>
             </form>

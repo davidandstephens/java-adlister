@@ -5,6 +5,6 @@
   Time: 14:37
   To change this template use File | Settings | File Templates.
 --%>
-<footer class="fixed-bottom main">
+<footer class="fixed-bottom main z2">
     <p class="py-2 my-auto ml-2">Way to go: you found the footer!</p>
 </footer>

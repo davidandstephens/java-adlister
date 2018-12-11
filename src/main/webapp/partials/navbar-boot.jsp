@@ -5,7 +5,7 @@
   Time: 12:29
   To change this template use File | Settings | File Templates.
 --%>
-<nav class="navbar navbar-expand-lg navbar-light main">
+<nav class="navbar navbar-expand-lg navbar-light main z2">
     <a class="navbar-brand" href="#"><img src="../img/neon-triangles.png" alt="triangles" class="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
