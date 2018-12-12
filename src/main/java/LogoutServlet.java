@@ -5,14 +5,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ViewProfileServlet", urlPatterns = "/profile")
-public class ViewProfileServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = "/logout")
+public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if (request.getSession().getAttribute("username") != null) {
-            request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
-        } else {
+        if (request.getSession().getAttribute("username") == null) {
             response.sendRedirect("/login");
+        } else {
+            request.getSession().removeAttribute("username");
+            request.getSession().invalidate();
+            request.getRequestDispatcher("/WEB-INF/logout.jsp").forward(request, response);
         }
+
     }
 }
