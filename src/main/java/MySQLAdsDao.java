@@ -1,4 +1,4 @@
-import com.mysql.jdbc.Driver;
+import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +24,6 @@ public class MySQLAdsDao implements Ads{
     public List<Ad> all() {
         List<Ad> ads = new ArrayList<>();
         try {
-            System.out.println("The connection value:" + conn);
             Statement stmt = this.conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
             while(rs.next()){
@@ -40,26 +39,12 @@ public class MySQLAdsDao implements Ads{
     public Long insert(Ad ad) {
         long bill = 0;
         try {
-            PreparedStatement ps = this.conn.prepareStatement("INSERT INTO ads (user_id, title, description) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            ps.setLong(1, ad.getUserId());
-            ps.setString(2, ad.getTitle());
-            ps.setString(3, ad.getDescription());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            bill = rs.getLong(1);
+            String ps = String.format("INSERT INTO ads (user_id, title, description) VALUES (%d, '%s', '%s')", ad.getUserId(), ad.getTitle(), ad.getDescription());
+            Statement stmt = this.conn.createStatement();
+            bill = stmt.executeUpdate(ps);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return bill;
-    }
-
-    public static void main(String[] args) {
-//        Ads adao = new MySQLAdsDao(new Config());
-//        List<Ad> ads = adao.all();
-//        for (Ad ad : ads) {
-//            System.out.println(ad.getId());
-//        }
-        System.out.println(DaoFactory.getAdsDao().all());
     }
 }

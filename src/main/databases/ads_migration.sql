@@ -1,8 +1,10 @@
 USE adlister_db;
 
-DROP TABLE IF EXISTS users;
+SET foreign_key_checks = 0;
 
 DROP TABLE IF EXISTS ads;
+
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -19,8 +21,6 @@ CREATE TABLE IF NOT EXISTS ads (
   user_id INT UNSIGNED,
   description  TEXT NOT NULL,
   title VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users (id)
 );
-
-ALTER TABLE ads ADD CONSTRAINT fk_users
-  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE;
