@@ -32,8 +32,12 @@ public class LoginServlet extends HttpServlet {
         } else {
             // TODO: store the logged in user object in the session, instead of just the username
             User user = DaoFactory.getUsersDao().findByUsername(username);
-            request.getSession().setAttribute("user", user.getUsername());
-            response.sendRedirect("/profile");
+            if (user.getPassword().equals(password)) {
+                request.getSession().setAttribute("user", user.getUsername());
+                response.sendRedirect("/profile");
+            } else {
+                response.sendRedirect("/login");
+            }
         }
     }
 }
