@@ -10,7 +10,7 @@ public class CountServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String reset = req.getParameter("reset");
-        if (!reset.equalsIgnoreCase("yes")) {
+        if (reset == null || !reset.equalsIgnoreCase("yes")) {
             res.getWriter().print("<h1>This page done went been seent: " + count + " times.</h1>");
         } else {
             count = 1;
