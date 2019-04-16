@@ -8,21 +8,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<c:if test='${param.user.equals("admin")}'>
-    <c:if test='${param.pass.equals("password")}'>
-        <c:redirect url="/profile.jsp"/>
-    </c:if>
-</c:if>
 
 <html>
 <jsp:include page="partials/bootstrap-head.jsp">
     <jsp:param name="title" value="Log In, Please" />
 </jsp:include>
     <body class="blueish">
+
+    <c:choose>
+        <c:when test='${param.user.equals("admin")}'>
+            <c:choose>
+                <c:when test='${param.pass.equals("password")}'>
+                    <c:redirect url="/profile"/>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="${not empty param.user}">
+                        <img src="img/thinking_man.png" alt="a man that is thinking" class="think-man animated slideInUp delay-1s">
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
+        </c:when>
+        <c:otherwise>
+            <c:if test="${not empty param.user}">
+                <img src="img/thinking_man.png" alt="a man that is thinking" class="think-man animated slideInUp delay-1s">
+            </c:if>
+        </c:otherwise>
+    </c:choose>
+
         <jsp:include page="partials/navbar-boot.jsp"/>
 
         <div class="main container rounded mt-5">
-            <form action="login.jsp" method="post">
+            <form action="login" method="post">
 
                 <div class="input-group pt-3 my-3">
                     <div class="input-group-prepend">
@@ -39,10 +55,6 @@
                 <button class="btn btn-success mb-3" type="submit">Let's-a Go!</button>
             </form>
         </div>
-
-        <c:if test='${not param.user.equals("admin") && not empty param.user}'>
-            <img src="img/thinking_man.png" alt="a man that is thinking" class="think-man animated slideInUp delay-1s">
-        </c:if>
 
         <jsp:include page="partials/footer-boot.jsp" />
         <jsp:include page="partials/boostrap-script.jsp" />
